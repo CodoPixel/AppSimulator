@@ -1,38 +1,261 @@
-.App {
-  text-align: center;
+.phone-top-bar {
+    position: relative;
+    z-index: 30;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    height: 25px;
+    margin-bottom: 35px;
+    box-sizing: border-box;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.phone-top-bar span {
+    color: #fff;
+    margin: 0 5px;
+    font-size: 0.9em;
+    transition: color 200ms ease;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.phone-top-bar span.black-top-icon {
+    color: #222;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.widget-weather {
+    width: 100%;
+    height: 100px;
+    display: flex;
+    justify-content: space-between;
 }
 
-.App-link {
-  color: #61dafb;
+.time h2 {
+    font-weight: normal;
+    font-size: 2.4em;
+    color: #fff;
+    margin: 0;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.time span,
+.weather span {
+    font-weight: lighter;
+    font-size: 0.75em;
+    color: #fff;
+}
+
+.weather {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+.weather img {
+    width: 50px;
+    height: 50px;
+}
+
+.app-grid {
+    display: grid;
+    grid-gap: 30px;
+    row-gap: 30px;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(3, 60px);
+}
+
+.launched-app {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 70px;
+    animation: launchApp 400ms ease 1 forwards;
+}
+
+.launched-app img {
+    width: 50px;
+    height: 50px;
+    user-select: none;
+    pointer-events: none;
+}
+
+.no-app {
+    animation: stopApp 400ms ease 1 forwards;
+}
+
+@keyframes launchApp {
+    from {
+        opacity: 0;
+        transform: scale(0);
+        pointer-events: none;
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+        pointer-events: all;
+    }
+}
+
+@keyframes stopApp {
+    75% {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 0;
+        transform: scale(0);
+        pointer-events: none;
+    }
+}
+
+.bottom-bar {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 30;
+    width: 100%;
+    height: 55px;
+    border-radius: 0 0 70px 70px;
+    background-color: rgba(0, 0, 0, 0.6);
+    display: flex;
+    justify-content: center;
+}
+
+.bottom-bar button {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    transition: background-color 200ms ease;
+}
+
+.bottom-bar button:nth-child(2) {
+    margin: 0 20px;
+}
+
+.bottom-bar button path {
+    fill: rgb(200, 200, 200);
+}
+
+.bottom-bar button:active {
+    background-color: rgb(100, 100, 100);
+}
+
+.return-button {
+    transform: rotate(58deg);
+}
+
+.top-menu {
+    padding: 60px 35px 35px 35px;
+    box-sizing: border-box;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 30;
+    width: 100%;
+    border-radius: 70px;
+    background-color: rgba(255, 255, 255, 0.9);
+}
+
+.top-menu-open {
+    animation: showTopMenu 400ms ease 1 forwards;
+}
+
+.top-menu-close {
+    animation: removeTopMenu 400ms ease 1 forwards;
+}
+
+@keyframes showTopMenu {
+    from {
+        height: 0;
+        opacity: 0;
+        pointer-events: none;
+    }
+
+    to {
+        height: 100%;
+        opacity: 1;
+        pointer-events: all;
+    }
+}
+
+@keyframes removeTopMenu {
+    50% {
+        opacity: 0;
+    }
+
+    to {
+        height: 0;
+        opacity: 0;
+        pointer-events: none;
+    }
+}
+
+.top-menu-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.top-menu-header button {
+    border: none;
+    background-color: transparent;
+    font-size: 1.3em;
+}
+
+.top-menu-header button svg path {
+   fill: #222;
+}
+
+.top-menu-header h3 {
+    color: #222;
+    font-size: 1.2em;
+    font-weight: normal;
+    margin: 0;
+}
+
+.top-menu-options-container {
+    display: grid;
+    grid-template-columns: repeat(6, 40px);
+    grid-template-rows: 40px;
+    column-gap: 15px;
+}
+
+.phone-option {
+    background-color: rgb(240, 240, 240);
+    border-radius: 50%;
+    padding: 5px;
+    box-sizing: border-box;
+    border: none;
+    cursor: pointer;
+    transition: background-color 200ms ease;
+}
+
+.phone-option svg path {
+    transition: fill 200ms ease;
+}
+
+.phone-option:active,
+.phone-option-active {
+    background-color: #2D65FF;
+}
+
+.phone-option:active svg path,
+.phone-option-active svg path {
+    fill: #fff;
+}
+
+.no-notif {
+    text-align: center;
+    font-size: 1.0em;
+}
+
+.remove-menu-zone {
+    height: 450px;
 }
